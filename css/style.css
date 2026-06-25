@@ -24,9 +24,18 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0603; f
 .door-label { margin-top: 10px; font-family: 'Playfair Display', serif; font-size: clamp(13px, 1.5vw, 17px); color: #f0cd84; letter-spacing: 1px; }
 .door-sub { margin-top: 3px; font-size: 11px; color: #6a8a7a; letter-spacing: 2px; text-transform: uppercase; }
 .hall-hint { position: absolute; bottom: 3%; left: 50%; transform: translateX(-50%); color: #506860; font-size: 12px; letter-spacing: 1px; }
-#char-hall { position: absolute; bottom: 28%; transform: translateX(-50%); z-index: 4; transition: left .9s ease-in-out; display: flex; align-items: flex-end; gap: 8px; }
+#char-hall { position: absolute; bottom: 28%; transform: translateX(-50%); z-index: 4; display: flex; align-items: flex-end; gap: 8px; will-change: left; }
 .char-scale-hall { transform: scale(1.9); transform-origin: bottom center; }
 .locked-tip { position: absolute; background: rgba(0,0,0,.88); color: #ccc; padding: 5px 10px; border-radius: 8px; font-size: 11px; white-space: nowrap; transform: translate(-50%, -140%); pointer-events: none; display: none; z-index: 9; }
+
+/* Door II — celestial variant */
+.door.door-celestial {
+  background: linear-gradient(175deg, #1a2348, #0a1028);
+  border-color: #d4b870;
+  box-shadow: inset 0 0 0 3px #1f2a55, 0 8px 28px rgba(0,0,0,.7), 0 0 40px rgba(140,170,255,.18);
+}
+.door.door-celestial::after { background: radial-gradient(circle at 35% 35%, #ffffff, #aab8e8); box-shadow: 0 0 12px rgba(180,200,255,.85); }
+.door.door-celestial .door-roman { color: rgba(220,205,255,.7); }
 
 /* ═══════════════════════════════════════════════
    ROOM 1 — PAINTINGS
@@ -47,10 +56,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0603; f
 .r1-carpet { position: absolute; bottom: 0; left: 0; width: 2600px; height: 17%; z-index: 3; background: repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 2px, transparent 2px 18px), repeating-linear-gradient(0deg, rgba(0,0,0,.03) 0 1px, transparent 1px 24px), linear-gradient(90deg, #6a4208 0px, #b88820 3px, #e0b840 5px, #b88820 7px, #6a4208 10px, transparent 10px, transparent calc(100% - 10px), #6a4208 calc(100% - 10px), #b88820 calc(100% - 7px), #e0b840 calc(100% - 5px), #b88820 calc(100% - 3px), #6a4208 100%), radial-gradient(ellipse 60% 80% at 50% 50%, #921414 0%, #7a0e0e 45%, #5e0a0a 100%); box-shadow: 5px 0 14px rgba(0,0,0,.55), -5px 0 14px rgba(0,0,0,.55), 0 -6px 16px rgba(0,0,0,.45), inset 0 0 30px rgba(0,0,0,.18); }
 
 .r1-arch { position: absolute; right: 0; bottom: 17%; width: 200px; height: 54%; background: radial-gradient(ellipse at 50% 100%, #1a0a02, #0a0402 70%); border: 7px solid #3a2010; border-bottom: none; border-radius: 50% 50% 0 0 / 30% 30% 0 0; z-index: 3; box-shadow: inset 0 0 40px rgba(0,0,0,.9), -8px 0 20px rgba(0,0,0,.5); }
-.r1-arch-label { position: absolute; right: 55px; bottom: calc(17% + 55%); color: rgba(240,205,132,.45); font-family: 'Playfair Display', serif; font-size: 12px; letter-spacing: 2px; z-index: 4; }
+.r1-arch-label { position: absolute; right: 55px; bottom: calc(17% + 200px); color: rgba(240,205,132,.45); font-family: 'Playfair Display', serif; font-size: 12px; letter-spacing: 2px; z-index: 4; }
 
 /* ── WALL SCONCES ── */
-.wall-sconce { position: absolute; z-index: 4; width: 60px; top: 28%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+.wall-sconce { position: absolute; z-index: 4; width: 60px; top: calc(66vh - 200px); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
 .sconce-backplate { width: 28px; height: 44px; background: linear-gradient(180deg, #c89820 0%, #8a6010 40%, #c89820 65%, #7a5008 100%); border-radius: 14px 14px 4px 4px; box-shadow: 0 0 0 2px #3a2008, inset 0 0 0 2px #f0c060, 2px 4px 10px rgba(0,0,0,.6); position: relative; z-index: 1; }
 .sconce-backplate::before { content: '✦'; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); color: rgba(240,200,80,.5); font-size: 10px; }
 .sconce-backplate::after { content: ''; position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #f0c060, #a07010); box-shadow: 0 0 6px rgba(240,180,60,.7); }
@@ -108,7 +117,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0603; f
 .barrier-rope::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 3px, transparent 3px 8px); border-radius: 3px; }
 .barrier-rail { position: absolute; z-index: 5; pointer-events: none; display: flex; align-items: flex-end; }
 
-/* ── ROOM UI ── */
+
+ */
 .room-title { position: absolute; top: 4%; left: 3%; z-index: 8; font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(18px, 2.5vw, 26px); color: #f5ead4; text-shadow: 0 2px 8px rgba(0,0,0,.8); opacity: .75; }
 .back-btn { position: absolute; top: 4%; right: 3%; z-index: 8; background: rgba(10,5,2,.75); border: 1.5px solid rgba(240,200,100,.4); color: #f0cd84; font-family: 'Quicksand', sans-serif; font-weight: 600; padding: 8px 18px; border-radius: 30px; cursor: pointer; font-size: 13px; letter-spacing: .5px; backdrop-filter: blur(4px); transition: background .2s; }
 .back-btn:hover { background: rgba(10,5,2,.96); }
@@ -117,8 +127,598 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0603; f
 .exit-hint-pill.show { opacity: 1; }
 
 /* character screen-space wrapper */
-#char-room1 { position: absolute; bottom: 17%; transform: translateX(-50%); z-index: 7; display: flex; align-items: flex-end; gap: 10px; }
+#char-room1, #char-room2 { position: absolute; bottom: 17%; transform: translateX(-50%); z-index: 7; display: flex; align-items: flex-end; gap: 10px; }
 .char-scale-r1 { transform: scale(2.2); transform-origin: bottom center; }
+
+/* ═══════════════════════════════════════════════
+   ROOM 2 — THE CELESTIAL REFLECTION GALLERY
+   Sister to Room I. Same architecture, same pacing,
+   transformed aesthetic: midnight observatory walls,
+   dome of constellations, obsidian reflection floor.
+═══════════════════════════════════════════════ */
+#room2 { background: #04060e; overflow: hidden; }
+#r2world { position: absolute; top: 0; bottom: 0; left: 0; width: 2600px; will-change: transform; }
+
+/* deep midnight-blue wall with gold astronomical detailing */
+.r2-wall {
+  position: absolute; top: 0; left: 0; right: 0; height: 66%;
+  background:
+    repeating-linear-gradient(180deg, transparent 0px, transparent 3px, rgba(255,255,255,.018) 3px, rgba(255,255,255,.018) 4px),
+    repeating-linear-gradient(90deg, #0e1638 0 60px, #0a1130 60px 120px, #0c1434 120px 180px);
+}
+.r2-wall::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(2,4,12,.85) 0%, rgba(6,10,28,.5) 16%, rgba(40,60,140,.10) 42%, rgba(40,60,140,.08) 56%, rgba(4,8,22,.4) 74%, rgba(2,4,10,.78) 100%);
+}
+/* gold astronomical lattice — orbits/meridian arcs etched into the wall */
+.r2-wall::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 22% 42% at 12% 38%, rgba(212,184,112,.07) 0 30%, transparent 31%),
+    radial-gradient(ellipse 22% 42% at 32% 38%, rgba(212,184,112,.06) 0 30%, transparent 31%),
+    radial-gradient(ellipse 22% 42% at 52% 38%, rgba(212,184,112,.07) 0 30%, transparent 31%),
+    radial-gradient(ellipse 22% 42% at 72% 38%, rgba(212,184,112,.06) 0 30%, transparent 31%),
+    radial-gradient(ellipse 22% 42% at 92% 38%, rgba(212,184,112,.07) 0 30%, transparent 31%),
+    radial-gradient(ellipse 60% 35% at 50% 42%, rgba(140,170,255,.07), transparent 72%);
+}
+
+/* gold dado rail */
+.r2-dado { position: absolute; top: 66%; left: 0; right: 0; height: 18px; background: linear-gradient(180deg, #d4b870 0%, #8a6b2a 55%, #4a3818 100%); box-shadow: 0 4px 14px rgba(0,0,0,.7), 0 0 18px rgba(212,184,112,.18); z-index: 2; }
+.r2-wainscot {
+  position: absolute; top: calc(66% + 18px); left: 0; right: 0; bottom: 17%;
+  background: linear-gradient(180deg, #060a1a 0%, #03060f 100%);
+}
+.r2-wainscot::before {
+  content: ''; position: absolute; inset: 0;
+  /* faint vertical pilaster pattern with gold accents */
+  background: repeating-linear-gradient(90deg, transparent 0 118px, rgba(212,184,112,.10) 118px 119px, transparent 119px 120px);
+}
+.r2-baseboard { position: absolute; bottom: 17%; left: 0; right: 0; height: 8px; background: linear-gradient(180deg, #2a2040, #0a0a1e); z-index: 3; }
+
+/* ── DOME CEILING with constellations ── */
+.r2-dome {
+  position: absolute; top: 0; left: 0; right: 0; height: 26%;
+  background:
+    radial-gradient(ellipse 70% 130% at 50% 100%, rgba(80,60,160,.35) 0%, rgba(30,30,80,.2) 35%, transparent 65%),
+    linear-gradient(180deg, #02030a 0%, #050a22 60%, #08113a 100%);
+  overflow: hidden; z-index: 1;
+}
+/* dome curve via radial — gives the impression of looking up into a dome */
+.r2-dome::before {
+  content: ''; position: absolute; inset: -8% -4% -2% -4%;
+  background: radial-gradient(ellipse 56% 100% at 50% 100%, transparent 0 62%, rgba(212,184,112,.18) 63%, rgba(212,184,112,.05) 65%, transparent 68%);
+  pointer-events: none;
+}
+/* gold meridian arc framing the dome */
+.r2-dome::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+  background: linear-gradient(90deg, transparent 0%, #d4b870 8%, #f5d890 50%, #d4b870 92%, transparent 100%);
+  box-shadow: 0 0 18px rgba(212,184,112,.4);
+}
+
+/* drifting star layer (CSS box-shadow starfield) */
+.r2-dome-stars, .r2-dome-stars-2 {
+  position: absolute; top: 0; left: 0; width: 200%; height: 100%; pointer-events: none;
+  background-image:
+    radial-gradient(1.2px 1.2px at 40px 30px, #ffffff, transparent 60%),
+    radial-gradient(1px   1px   at 120px 80px, #cfd8ff, transparent 60%),
+    radial-gradient(1.4px 1.4px at 220px 50px, #ffffff, transparent 60%),
+    radial-gradient(1px   1px   at 310px 120px, #b8c6ff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 410px 40px, #fff8e0, transparent 60%),
+    radial-gradient(1px   1px   at 520px 110px, #c0d0ff, transparent 60%),
+    radial-gradient(1.2px 1.2px at 640px 70px, #ffffff, transparent 60%),
+    radial-gradient(1px   1px   at 760px 30px, #d8e0ff, transparent 60%),
+    radial-gradient(1.4px 1.4px at 870px 130px, #ffffff, transparent 60%),
+    radial-gradient(1px   1px   at 970px 60px, #b0c0ff, transparent 60%),
+    radial-gradient(1.2px 1.2px at 1080px 100px, #ffffff, transparent 60%),
+    radial-gradient(1px   1px   at 1190px 40px, #d4dcff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 1300px 90px, #fff4d0, transparent 60%),
+    radial-gradient(1px   1px   at 1410px 130px, #c0ccff, transparent 60%),
+    radial-gradient(1.2px 1.2px at 1520px 50px, #ffffff, transparent 60%),
+    radial-gradient(1px   1px   at 1640px 110px, #b8c4ff, transparent 60%),
+    radial-gradient(1.4px 1.4px at 1750px 70px, #ffffff, transparent 60%),
+    radial-gradient(1px   1px   at 1860px 30px, #d8e0ff, transparent 60%),
+    radial-gradient(1.2px 1.2px at 1970px 100px, #ffffff, transparent 60%),
+    radial-gradient(1px   1px   at 2080px 60px, #c8d4ff, transparent 60%);
+  animation: r2-stars-drift 240s linear infinite, r2-star-twinkle 4.2s ease-in-out infinite;
+}
+.r2-dome-stars-2 {
+  background-image:
+    radial-gradient(1px 1px at 80px 100px, #fff, transparent 60%),
+    radial-gradient(1.2px 1.2px at 260px 30px, #d8e0ff, transparent 60%),
+    radial-gradient(1px 1px at 450px 90px, #fff, transparent 60%),
+    radial-gradient(1.4px 1.4px at 680px 40px, #fff4d0, transparent 60%),
+    radial-gradient(1px 1px at 900px 130px, #c0ccff, transparent 60%),
+    radial-gradient(1.2px 1.2px at 1140px 70px, #ffffff, transparent 60%),
+    radial-gradient(1px 1px at 1370px 30px, #d4dcff, transparent 60%),
+    radial-gradient(1.4px 1.4px at 1600px 100px, #fff, transparent 60%),
+    radial-gradient(1px 1px at 1820px 60px, #b8c4ff, transparent 60%),
+    radial-gradient(1.2px 1.2px at 2040px 120px, #fff, transparent 60%);
+  animation: r2-stars-drift 360s linear infinite reverse, r2-star-twinkle 6s ease-in-out infinite .8s;
+  opacity: .8;
+}
+.r2-dome-nebula {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 28% 60% at 18% 80%, rgba(120,80,200,.22), transparent 60%),
+    radial-gradient(ellipse 24% 55% at 52% 95%, rgba(60,120,220,.20), transparent 60%),
+    radial-gradient(ellipse 22% 50% at 82% 80%, rgba(200,90,160,.18), transparent 60%);
+  filter: blur(8px);
+  animation: r2-nebula-pulse 18s ease-in-out infinite alternate;
+}
+/* gold radial ribs that suggest dome structure */
+.r2-dome-ribs {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 0 88%, rgba(212,184,112,.4) 88% 88.4%, transparent 88.4%),
+    repeating-linear-gradient(90deg, transparent 0 240px, rgba(212,184,112,.12) 240px 241px, transparent 241px 242px);
+}
+.r2-dome-zodiac {
+  position: absolute; bottom: 4px; left: 0; right: 0;
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 9px; letter-spacing: 6px;
+  color: rgba(212,184,112,.55);
+  text-align: center; white-space: nowrap; overflow: hidden;
+  text-shadow: 0 0 8px rgba(212,184,112,.3);
+}
+
+@keyframes r2-stars-drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes r2-star-twinkle { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+@keyframes r2-nebula-pulse { from { opacity: .85; transform: scale(1); } to { opacity: 1; transform: scale(1.05); } }
+
+/* additional screen-space twinkle layer over the dome (subtle) */
+.r2-stars-overlay {
+  position: absolute; top: 0; left: 0; right: 0; height: 26%; pointer-events: none; z-index: 6;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 38%, #fff, transparent 60%),
+    radial-gradient(1.3px 1.3px at 28% 22%, #cfd8ff, transparent 60%),
+    radial-gradient(1.8px 1.8px at 46% 48%, #fff4d0, transparent 60%),
+    radial-gradient(1.4px 1.4px at 64% 18%, #fff, transparent 60%),
+    radial-gradient(1.5px 1.5px at 82% 40%, #d8e0ff, transparent 60%),
+    radial-gradient(1.6px 1.6px at 92% 24%, #fff, transparent 60%);
+  animation: r2-star-twinkle 3.4s ease-in-out infinite;
+}
+.r2-nebula-overlay {
+  position: absolute; top: 0; left: 0; right: 0; height: 26%; pointer-events: none; z-index: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 100%, rgba(80,60,160,.15), transparent 70%);
+  filter: blur(20px);
+}
+
+/* ── POLISHED OBSIDIAN FLOOR (the magical reflection surface) ── */
+.r2-floor {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 17%;
+  background:
+    /* faint reflected stars on obsidian */
+    radial-gradient(1px 1px at 6% 30%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(1px 1px at 14% 70%, rgba(180,200,255,.45), transparent 60%),
+    radial-gradient(1.2px 1.2px at 24% 45%, rgba(255,240,200,.5), transparent 60%),
+    radial-gradient(1px 1px at 34% 80%, rgba(255,255,255,.4), transparent 60%),
+    radial-gradient(1px 1px at 44% 25%, rgba(180,200,255,.5), transparent 60%),
+    radial-gradient(1.2px 1.2px at 56% 65%, rgba(255,255,255,.55), transparent 60%),
+    radial-gradient(1px 1px at 66% 40%, rgba(220,210,255,.4), transparent 60%),
+    radial-gradient(1px 1px at 76% 75%, rgba(255,250,220,.45), transparent 60%),
+    radial-gradient(1.2px 1.2px at 86% 35%, rgba(255,255,255,.5), transparent 60%),
+    radial-gradient(1px 1px at 94% 60%, rgba(190,210,255,.4), transparent 60%),
+    /* obsidian sheen — long horizontal highlight */
+    linear-gradient(180deg, rgba(50,60,110,.25) 0%, rgba(8,10,24,.6) 30%, rgba(2,3,10,.95) 100%),
+    linear-gradient(90deg, #050714 0%, #080b20 50%, #050714 100%);
+  box-shadow: inset 0 24px 50px rgba(0,0,0,.85), inset 0 -10px 30px rgba(40,60,140,.18);
+  z-index: 2;
+}
+/* slow shimmer band sweeping across the obsidian — adds the "magic surface" feel */
+.r2-floor-shimmer {
+  position: absolute; bottom: 0; left: 0; width: 2600px; height: 17%; z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, transparent 35%, rgba(180,210,255,.10) 48%, rgba(220,230,255,.18) 50%, rgba(180,210,255,.10) 52%, transparent 65%, transparent 100%);
+  mix-blend-mode: screen;
+  animation: r2-floor-sweep 14s linear infinite;
+}
+@keyframes r2-floor-sweep {
+  from { transform: translateX(-30%); }
+  to   { transform: translateX(30%); }
+}
+
+/* red carpet preserved — same museum pacing */
+/* Red runner — narrower than the full floor so a band of polished obsidian
+   stays exposed between the wainscot and the carpet edge. That band is the
+   "magical reflection surface" the spec calls out. */
+.r2-carpet {
+  position: absolute; bottom: 0; left: 0; width: 2600px; height: 11%; z-index: 4;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 2px, transparent 2px 18px),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.03) 0 1px, transparent 1px 24px),
+    linear-gradient(90deg, #6a4208 0px, #d4b870 3px, #f5d890 5px, #d4b870 7px, #6a4208 10px, transparent 10px, transparent calc(100% - 10px), #6a4208 calc(100% - 10px), #d4b870 calc(100% - 7px), #f5d890 calc(100% - 5px), #d4b870 calc(100% - 3px), #6a4208 100%),
+    radial-gradient(ellipse 60% 80% at 50% 50%, #921414 0%, #7a0e0e 45%, #5e0a0a 100%);
+  box-shadow: 5px 0 14px rgba(0,0,0,.55), -5px 0 14px rgba(0,0,0,.55), 0 -6px 16px rgba(0,0,0,.65), inset 0 0 30px rgba(0,0,0,.18);
+}
+/* obsidian "lip" along the carpet's leading edge — subtle gold trim glints */
+.r2-carpet::before {
+  content: ''; position: absolute; top: -2px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(212,184,112,.5) 8%, rgba(212,184,112,.3) 50%, rgba(212,184,112,.5) 92%, transparent 100%);
+}
+
+/* archway exit — gold-trimmed midnight */
+.r2-arch {
+  position: absolute; right: 0; bottom: 17%; width: 200px; height: 54%;
+  background: radial-gradient(ellipse at 50% 100%, #04060e, #010206 70%);
+  border: 7px solid #d4b870; border-bottom: none;
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0; z-index: 3;
+  box-shadow: inset 0 0 40px rgba(0,0,0,.95), -8px 0 24px rgba(0,0,0,.6), 0 0 30px rgba(212,184,112,.2);
+}
+.r2-arch-label {
+  position: absolute; right: 55px; bottom: calc(17% + 55%);
+  color: rgba(212,184,112,.6);
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 12px; letter-spacing: 3px; z-index: 4;
+}
+
+/* ── MOONBEAM SPOTLIGHTS (cool silver-blue) ── */
+.r2-spotlight {
+  position: absolute; pointer-events: none; z-index: 3;
+  clip-path: polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(180deg,
+    rgba(220,230,255,0) 0%,
+    rgba(200,220,255,.06) 30%,
+    rgba(180,210,255,.20) 65%,
+    rgba(220,235,255,.50) 88%,
+    rgba(240,245,255,.62) 100%);
+  filter: blur(7px);
+}
+.r2-spotlight-reflect {
+  position: absolute; pointer-events: none; z-index: 3;
+  clip-path: polygon(40% 100%, 60% 100%, 100% 0%, 0% 0%);
+  background: linear-gradient(180deg,
+    rgba(200,220,255,.25) 0%,
+    rgba(180,210,255,.16) 30%,
+    rgba(160,195,255,.08) 58%,
+    rgba(140,180,255,.02) 80%,
+    rgba(220,235,255,0) 100%);
+  filter: blur(12px); opacity: .6;
+}
+.r2-frame-halo {
+  position: absolute; pointer-events: none; z-index: 3; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 38%,
+    rgba(200,220,255,.30) 0%,
+    rgba(170,200,255,.16) 38%,
+    rgba(90,130,220,.06) 62%,
+    transparent 78%);
+  filter: blur(14px);
+}
+
+/* ── ASTROLABE LANTERNS (replace flame sconces) ── */
+.r2-lantern {
+  position: absolute; z-index: 4; width: 60px; top: 14%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center;
+}
+.r2-lantern-chain {
+  width: 2px; height: 38px;
+  background: linear-gradient(180deg, #d4b870 0%, #8a6b2a 100%);
+  box-shadow: 0 0 4px rgba(212,184,112,.5);
+}
+.r2-lantern-ring {
+  position: relative;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 2.5px solid #d4b870;
+  box-shadow: 0 0 12px rgba(212,184,112,.5), inset 0 0 6px rgba(212,184,112,.4);
+  background: radial-gradient(circle at 50% 50%, rgba(180,200,255,.20), rgba(20,30,70,.6) 60%, rgba(8,12,28,.85));
+  animation: r2-lantern-sway 6s ease-in-out infinite alternate;
+}
+.r2-lantern-cross {
+  position: absolute; top: 50%; left: 0; right: 0; height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(212,184,112,.7) 20%, rgba(212,184,112,.7) 80%, transparent);
+  transform: translateY(-50%);
+}
+.r2-lantern-cross.v {
+  top: 0; bottom: 0; left: 50%; right: auto; width: 1.5px; height: auto;
+  background: linear-gradient(180deg, transparent, rgba(212,184,112,.7) 20%, rgba(212,184,112,.7) 80%, transparent);
+  transform: translateX(-50%);
+}
+.r2-lantern-core {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #ffffff, #b0c8ff 50%, #6080d0);
+  box-shadow: 0 0 12px rgba(200,220,255,.95), 0 0 24px rgba(160,190,255,.5);
+  animation: r2-lantern-pulse 3s ease-in-out infinite alternate;
+}
+.r2-lantern-glow {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 50%,
+    rgba(180,210,255,.20) 0%,
+    rgba(140,180,255,.08) 45%,
+    transparent 72%);
+  filter: blur(10px); pointer-events: none;
+  animation: r2-lantern-pulse 3s ease-in-out infinite alternate;
+}
+@keyframes r2-lantern-sway {
+  0%   { transform: rotate(-1.5deg); }
+  100% { transform: rotate(1.5deg);  }
+}
+@keyframes r2-lantern-pulse {
+  0%   { opacity: .85; }
+  100% { opacity: 1;   }
+}
+
+/* ── CELESTIAL BARRIER ROPES (deep blue, gold posts retained) ── */
+.barrier-rail-celestial .barrier-rope {
+  background: linear-gradient(180deg, #0e1638 0%, #1d2b6e 50%, #0a1130 100%);
+  box-shadow: 0 2px 5px rgba(0,0,0,.6), 0 0 6px rgba(120,150,255,.18);
+}
+
+/* ── CELESTIAL DRIFT MOTES ── */
+.orb.orb-celestial {
+  background: radial-gradient(circle at 40% 40%, #ffffff, rgba(180,200,255,.6) 55%, transparent);
+  box-shadow: 0 0 8px 2px rgba(200,220,255,.7), 0 0 18px 5px rgba(140,180,255,.28);
+}
+
+/* ── CELESTIAL FRAMES (exhibits) ── */
+.r2-frame { position: absolute; cursor: pointer; z-index: 4; border-radius: 4px; transition: filter .25s, transform .25s; }
+.r2-frame:hover { filter: brightness(1.18); transform: translateY(-4px); }
+.r2-frame-border {
+  position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(145deg, #f5d890 0%, #b88820 40%, #4a3818 75%, #d4b870 100%);
+  box-shadow:
+    0 0 0 2px #1a1838,
+    inset 0 0 0 3px #2a2050,
+    inset 0 0 0 6px #d4b870,
+    inset 0 0 0 8px #3a2860,
+    0 8px 30px rgba(0,0,0,.85),
+    0 0 36px rgba(160,190,255,.18);
+}
+.r2-frame-border::before {
+  content: ''; position: absolute; inset: 10px;
+  border: 1.5px solid rgba(212,184,112,.45); border-radius: 2px; pointer-events: none;
+}
+.r2-frame-border::after {
+  content: '✦'; position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+  font-size: 11px; color: rgba(212,184,112,.85);
+  text-shadow: 0 0 6px rgba(212,184,112,.7);
+}
+.r2-frame-mat {
+  position: absolute; inset: 14px; border-radius: 2px; overflow: hidden;
+  background:
+    radial-gradient(ellipse 70% 100% at 50% 100%, #0c1638 0%, #050818 60%, #02030a 100%);
+}
+/* small constellation label inside the mat */
+.c-label {
+  position: absolute; bottom: 6px; left: 0; right: 0; text-align: center;
+  font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 4px;
+  color: rgba(212,184,112,.85);
+  text-shadow: 0 0 6px rgba(212,184,112,.4);
+}
+.r2-frame-label-plate {
+  position: absolute; bottom: -26px; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(180deg, #0c1230 0%, #06091c 100%);
+  padding: 4px 14px; border-radius: 2px;
+  font-family: 'Cinzel', serif; font-size: 9.5px; letter-spacing: 2px;
+  color: #e6d8a6; white-space: nowrap;
+  border: 1px solid rgba(212,184,112,.6);
+  box-shadow: 0 2px 6px rgba(0,0,0,.6), 0 0 10px rgba(212,184,112,.2);
+}
+
+/* ── CONSTELLATIONS rendered in pure CSS via box-shadow dots ── */
+.constellation {
+  position: absolute; inset: 8px;
+  border-radius: 2px; overflow: hidden;
+}
+.constellation::before, .constellation::after {
+  content: ''; position: absolute; left: 0; top: 0; width: 3px; height: 3px;
+  border-radius: 50%; background: #fff;
+}
+/* helper: stars are drawn via long box-shadow lists.
+   Each constellation has its own dot pattern + connecting lines drawn
+   with skinny rotated divs on the .constellation children (simulated using
+   inline filters + linear-gradients on ::after lines). For simplicity,
+   we draw only the stars + a soft glow line via repeating gradients. */
+
+/* URSA MAJOR — the big dipper */
+.c-ursa::before {
+  /* primary stars (the dipper) */
+  box-shadow:
+    20px 30px 0 .5px #fff,        50px 38px 0 .5px #fff,
+    80px 46px 0 .5px #fff,        110px 60px 0 .5px #fff,
+    132px 78px 0 .5px #fff,        108px 102px 0 .5px #fff,
+    78px 96px  0 .5px #fff,
+    0 0 6px rgba(255,255,255,.7);
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.7));
+}
+.c-ursa::after {
+  /* connecting bowl/handle as a faint translucent stroke via gradients */
+  inset: 0; width: 100%; height: 100%; background:
+    linear-gradient(115deg, transparent 0 28%, rgba(212,184,112,.35) 28% 28.6%, transparent 28.6% 100%),
+    linear-gradient(132deg, transparent 0 48%, rgba(212,184,112,.30) 48% 48.5%, transparent 48.5% 100%),
+    linear-gradient(108deg, transparent 0 64%, rgba(212,184,112,.30) 64% 64.5%, transparent 64.5% 100%);
+  border-radius: 0; opacity: .55;
+}
+
+/* CASSIOPEIA — W shape */
+.c-cass::before {
+  box-shadow:
+    18px 40px 0 .5px #fff,
+    48px 80px 0 .5px #fff,
+    78px 50px 0 .5px #fff,
+    108px 90px 0 .5px #fff,
+    138px 50px 0 .5px #fff,
+    0 0 6px rgba(255,255,255,.7);
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.7));
+}
+.c-cass::after {
+  inset: 0; width: 100%; height: 100%; background:
+    linear-gradient(130deg, transparent 0 22%, rgba(212,184,112,.30) 22% 22.6%, transparent 22.6% 100%),
+    linear-gradient(55deg,  transparent 0 38%, rgba(212,184,112,.30) 38% 38.6%, transparent 38.6% 100%),
+    linear-gradient(135deg, transparent 0 52%, rgba(212,184,112,.30) 52% 52.6%, transparent 52.6% 100%),
+    linear-gradient(50deg,  transparent 0 68%, rgba(212,184,112,.30) 68% 68.6%, transparent 68.6% 100%);
+  border-radius: 0; opacity: .55;
+}
+
+/* ORION — belt + shoulders/feet */
+.c-orion::before {
+  box-shadow:
+    30px 28px  0 .5px #fff,       /* Betelgeuse */
+    120px 30px 0 .5px #fff,       /* Bellatrix */
+    55px 70px  0 .5px #fff,       /* belt 1 */
+    78px 76px  0 .5px #fff,       /* belt 2 */
+    101px 82px 0 .5px #fff,       /* belt 3 */
+    40px 130px 0 .5px #fff,       /* Saiph */
+    130px 134px 0 .5px #fff,      /* Rigel */
+    0 0 6px rgba(255,255,255,.7);
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.7));
+}
+.c-orion::after {
+  inset: 0; width: 100%; height: 100%; background:
+    linear-gradient(115deg, transparent 0 42%, rgba(212,184,112,.32) 42% 42.6%, transparent 42.6% 100%),
+    linear-gradient(95deg,  transparent 0 48%, rgba(212,184,112,.32) 48% 48.6%, transparent 48.6% 100%),
+    linear-gradient(85deg,  transparent 0 52%, rgba(212,184,112,.32) 52% 52.6%, transparent 52.6% 100%);
+  border-radius: 0; opacity: .55;
+}
+
+/* LYRA — small parallelogram */
+.c-lyra::before {
+  box-shadow:
+    76px 24px  0 1px #fff,        /* Vega — bright */
+    50px 60px  0 .5px #fff,
+    102px 64px 0 .5px #fff,
+    60px 110px 0 .5px #fff,
+    100px 116px 0 .5px #fff,
+    0 0 10px rgba(255,255,255,.9);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.9));
+}
+.c-lyra::after {
+  inset: 0; width: 100%; height: 100%; background:
+    linear-gradient(110deg, transparent 0 40%, rgba(212,184,112,.32) 40% 40.6%, transparent 40.6% 100%),
+    linear-gradient(70deg,  transparent 0 48%, rgba(212,184,112,.32) 48% 48.6%, transparent 48.6% 100%);
+  border-radius: 0; opacity: .55;
+}
+
+/* CYGNUS — northern cross */
+.c-cygnus::before {
+  box-shadow:
+    76px 24px  0 1px #fff,        /* Deneb */
+    76px 62px  0 .5px #fff,
+    76px 100px 0 .5px #fff,
+    76px 140px 0 .5px #fff,
+    36px 82px  0 .5px #fff,
+    116px 82px 0 .5px #fff,
+    0 0 10px rgba(255,255,255,.9);
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.9));
+}
+.c-cygnus::after {
+  inset: 0; width: 100%; height: 100%; background:
+    linear-gradient(90deg, transparent 0 49%, rgba(212,184,112,.32) 49% 49.6%, transparent 49.6% 100%),
+    linear-gradient(180deg, transparent 0 42%, rgba(212,184,112,.32) 42% 42.6%, transparent 42.6% 100%);
+  border-radius: 0; opacity: .55;
+}
+
+/* ── MAGICAL OBSIDIAN REFLECTIONS ──
+   Below each frame, on the obsidian, a hidden image appears — NOT a literal
+   mirror of the constellation above. Different symbol entirely. */
+/* Reflections live on the obsidian band exposed in front of the carpet.
+   `left` and `width` come from the inline style on each element (matched to
+   the frame above it). The y-position is fixed: just above the carpet,
+   right where moonlight would catch the polished stone. */
+.r2-reflection {
+  position: absolute; bottom: 11%; height: 6%;
+  pointer-events: none; z-index: 5;
+  opacity: .9;
+  filter: blur(.3px) saturate(1.15);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* gently fades into the carpet edge below */
+  -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 65%, rgba(0,0,0,.5) 90%, transparent 100%);
+          mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 65%, rgba(0,0,0,.5) 90%, transparent 100%);
+  mix-blend-mode: screen;
+  animation: r2-reflection-shimmer 7s ease-in-out infinite alternate;
+}
+.r2-reflection::after {
+  content: attr(data-reflect-label);
+  position: absolute; bottom: -16px; left: 0; right: 0; text-align: center;
+  font-family: 'Cinzel', serif; font-size: 8.5px; letter-spacing: 2.5px;
+  color: rgba(212,184,112,.85);
+  text-shadow: 0 0 6px rgba(180,200,255,.6);
+  pointer-events: none;
+}
+@keyframes r2-reflection-shimmer {
+  0%   { opacity: .78; filter: blur(.3px) saturate(1.1); }
+  50%  { opacity: 1;   filter: blur(.2px) saturate(1.3); }
+  100% { opacity: .85; filter: blur(.35px) saturate(1.15); }
+}
+
+/* Each reflection is its own symbol — drawn in CSS via radial gradients
+   so visitors see secrets, not mirrors. */
+
+/* a fox in the snow — two amber eyes, ear silhouettes, snowflakes */
+.r2-reflection-fox {
+  background-image:
+    radial-gradient(circle at 50% 22%, rgba(255,170,80,.65) 0 4px, transparent 5px),  /* left eye */
+    radial-gradient(circle at 56% 22%, rgba(255,170,80,.65) 0 4px, transparent 5px),  /* right eye */
+    radial-gradient(circle at 45% 14%, rgba(220,200,255,.4) 0 8px, transparent 9px),  /* left ear */
+    radial-gradient(circle at 61% 14%, rgba(220,200,255,.4) 0 8px, transparent 9px),  /* right ear */
+    radial-gradient(ellipse 30% 14% at 53% 30%, rgba(200,210,255,.22), transparent 80%),
+    radial-gradient(circle at 18% 60%, rgba(255,255,255,.5) 0 1.4px, transparent 2px),
+    radial-gradient(circle at 32% 80%, rgba(255,255,255,.5) 0 1.4px, transparent 2px),
+    radial-gradient(circle at 72% 70%, rgba(255,255,255,.5) 0 1.4px, transparent 2px),
+    radial-gradient(circle at 86% 55%, rgba(255,255,255,.5) 0 1.4px, transparent 2px);
+}
+
+/* a hand held in the dark — two faint palms reaching toward each other */
+.r2-reflection-hand {
+  background-image:
+    radial-gradient(ellipse 14% 22% at 36% 32%, rgba(220,200,255,.45), transparent 70%),
+    radial-gradient(ellipse 14% 22% at 64% 32%, rgba(220,200,255,.45), transparent 70%),
+    radial-gradient(ellipse 6% 16% at 36% 14%, rgba(220,200,255,.4), transparent 70%),
+    radial-gradient(ellipse 6% 16% at 64% 14%, rgba(220,200,255,.4), transparent 70%),
+    radial-gradient(circle at 50% 38%, rgba(255,220,160,.6) 0 5px, transparent 7px); /* spark where they meet */
+}
+
+/* a stag — head silhouette with antlers, suggested by branching lines */
+.r2-reflection-stag {
+  background-image:
+    radial-gradient(ellipse 14% 20% at 50% 50%, rgba(220,210,255,.42), transparent 75%),  /* head */
+    radial-gradient(circle at 44% 36%, rgba(220,210,255,.36) 0 3px, transparent 4px),
+    radial-gradient(circle at 56% 36%, rgba(220,210,255,.36) 0 3px, transparent 4px),
+    radial-gradient(circle at 40% 22%, rgba(220,210,255,.36) 0 3px, transparent 4px),
+    radial-gradient(circle at 60% 22%, rgba(220,210,255,.36) 0 3px, transparent 4px),
+    radial-gradient(circle at 32% 12%, rgba(220,210,255,.36) 0 3px, transparent 4px),
+    radial-gradient(circle at 68% 12%, rgba(220,210,255,.36) 0 3px, transparent 4px),
+    radial-gradient(circle at 26% 28%, rgba(220,210,255,.32) 0 2px, transparent 3px),
+    radial-gradient(circle at 74% 28%, rgba(220,210,255,.32) 0 2px, transparent 3px),
+    radial-gradient(circle at 48% 56%, rgba(255,200,140,.5) 0 2px, transparent 3px),  /* eye */
+    radial-gradient(circle at 52% 56%, rgba(255,200,140,.5) 0 2px, transparent 3px);
+}
+
+/* an unopened letter — rectangle with seal */
+.r2-reflection-letter {
+  background-image:
+    linear-gradient(180deg, transparent 18%, rgba(230,220,200,.45) 18% 62%, transparent 62%),
+    linear-gradient(135deg, transparent 30%, rgba(180,170,150,.4) 30% 31%, transparent 31% 100%),
+    linear-gradient(45deg,  transparent 30%, rgba(180,170,150,.4) 30% 31%, transparent 31% 100%),
+    radial-gradient(circle at 50% 42%, rgba(190,40,60,.7) 0 8px, transparent 10px),  /* wax seal */
+    radial-gradient(circle at 50% 42%, rgba(255,200,180,.4) 0 3px, transparent 4px);
+}
+
+/* a paper crane on still water — diamond silhouette with ripples */
+.r2-reflection-crane {
+  background-image:
+    /* crane body — two triangles via gradients */
+    linear-gradient(135deg, transparent 38%, rgba(220,225,255,.55) 38% 50%, transparent 50% 100%),
+    linear-gradient(225deg, transparent 38%, rgba(220,225,255,.55) 38% 50%, transparent 50% 100%),
+    /* beak/tail */
+    radial-gradient(circle at 24% 38%, rgba(220,225,255,.45) 0 3px, transparent 4px),
+    radial-gradient(circle at 76% 38%, rgba(220,225,255,.45) 0 3px, transparent 4px),
+    /* water ripples */
+    radial-gradient(ellipse 50% 6% at 50% 70%, transparent 0 38%, rgba(200,220,255,.35) 39% 40%, transparent 41%),
+    radial-gradient(ellipse 70% 8% at 50% 82%, transparent 0 44%, rgba(200,220,255,.28) 45% 46%, transparent 47%),
+    radial-gradient(ellipse 90% 10% at 50% 92%, transparent 0 47%, rgba(200,220,255,.22) 48% 49%, transparent 50%);
+}
+
+/* room 2 title slight gold tint */
+.r2-title { color: #e6d8a6; }
+.back-btn-celestial { border-color: rgba(212,184,112,.5); color: #e6d8a6; }
+.r2-hint { color: rgba(212,184,112,.45); }
+.exit-hint-pill-celestial { border-color: rgba(212,184,112,.5); color: #e6d8a6; }
 
 /* ═══════════════════════════════════════════════
    CHARACTER RIG  (shared)
@@ -224,6 +824,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0603; f
 #frame-overlay.show #overlay-frame { transform: scale(1); }
 #overlay-frame::before { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 300px; height: 160px; background: radial-gradient(ellipse at 50% 0%, rgba(255,220,100,.35), transparent 70%); pointer-events: none; }
 #overlay-img { display: block; max-width: min(48vw, 452px); max-height: calc(80vh - 28px); width: auto; height: auto; border-radius: 2px; }
+#overlay-celestial { display: none; width: min(40vw, 400px); height: min(56vh, 520px); border-radius: 2px; background: radial-gradient(ellipse 70% 100% at 50% 100%, #0c1638 0%, #050818 60%, #02030a 100%); position: relative; overflow: hidden; }
+#overlay-celestial.show { display: block; }
 
 #overlay-note { width: min(26vw, 240px); background: #fdf6e3; border-radius: 3px; padding: 22px 20px 26px; box-shadow: 5px 7px 22px rgba(0,0,0,.65), -2px -2px 0 #e8d9b0 inset; transform: rotate(2.5deg) scale(.85); transition: transform .5s cubic-bezier(.175,.885,.32,1.275) .1s; position: relative; flex-shrink: 0; align-self: center; }
 #frame-overlay.show #overlay-note { transform: rotate(2.5deg) scale(1); }
@@ -243,4 +845,514 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0603; f
   #overlay-img   { max-width: calc(90vw - 28px); }
   #overlay-note  { width: 85vw; margin-top: 16px; transform: rotate(1deg) scale(.85); }
   #frame-overlay.show #overlay-note { transform: rotate(1deg) scale(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ROOM II — Atmospheric Celestial Enhancements (additive only)
+   All layers are pointer-events:none and sit above the dome but below
+   the architecture/exhibits via z-index ordering.
+═══════════════════════════════════════════════════════════════════ */
+.r2-fx,
+.r2-fx * { pointer-events: none; }
+.r2-fx {
+  position: absolute; inset: 0;
+  overflow: hidden;
+  z-index: 1; /* above .r2-wall(z-index implicit), below frames(z:4) and characters(z:7) */
+  mix-blend-mode: screen;
+}
+
+/* ─── Milky Way diagonal band ───────────────────── */
+.r2-milkyway {
+  position: absolute;
+  top: -10%; left: -20%;
+  width: 140%; height: 70%;
+  background:
+    radial-gradient(ellipse 60% 18% at 50% 50%, rgba(180,200,255,.22) 0%, rgba(150,140,220,.14) 35%, rgba(120,100,200,.06) 60%, transparent 80%),
+    radial-gradient(ellipse 80% 8%  at 50% 50%, rgba(220,225,255,.18) 0%, transparent 70%);
+  filter: blur(14px);
+  transform: rotate(-22deg);
+  opacity: .85;
+  animation: r2-mw-breathe 28s ease-in-out infinite alternate;
+}
+.r2-milkyway-dust {
+  position: absolute;
+  top: -8%; left: -20%;
+  width: 140%; height: 65%;
+  background:
+    radial-gradient(circle at 18% 50%, rgba(190,170,255,.18), transparent 18%),
+    radial-gradient(circle at 38% 48%, rgba(140,180,255,.14), transparent 20%),
+    radial-gradient(circle at 58% 52%, rgba(220,220,255,.16), transparent 16%),
+    radial-gradient(circle at 78% 48%, rgba(170,150,230,.12), transparent 22%);
+  filter: blur(22px);
+  transform: rotate(-22deg);
+  opacity: .7;
+  animation: r2-mw-breathe 34s ease-in-out infinite alternate-reverse;
+}
+@keyframes r2-mw-breathe {
+  from { opacity: .55; }
+  to   { opacity: .95; }
+}
+
+/* ─── Parallax star layers (CSS multi-radial-gradient stars) ─── */
+.r2-stars-far, .r2-stars-mid, .r2-stars-near {
+  position: absolute; inset: -10%;
+  background-repeat: repeat;
+  opacity: .8;
+}
+.r2-stars-far {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px,  rgba(255,255,255,.55), transparent 50%),
+    radial-gradient(1px 1px at 90px 120px, rgba(200,220,255,.45), transparent 50%),
+    radial-gradient(1px 1px at 160px 60px, rgba(255,255,240,.5),  transparent 50%),
+    radial-gradient(1px 1px at 240px 200px,rgba(180,200,255,.55), transparent 50%),
+    radial-gradient(1px 1px at 310px 90px, rgba(255,240,220,.45), transparent 50%);
+  background-size: 380px 260px;
+  animation: r2-px-drift-far 220s linear infinite, r2-twinkle-a 7s ease-in-out infinite;
+}
+.r2-stars-mid {
+  background-image:
+    radial-gradient(1.4px 1.4px at 40px 80px,  rgba(255,255,255,.85), transparent 55%),
+    radial-gradient(1.2px 1.2px at 180px 40px, rgba(200,220,255,.7),  transparent 55%),
+    radial-gradient(1.2px 1.2px at 260px 180px,rgba(255,235,200,.7),  transparent 55%),
+    radial-gradient(1.4px 1.4px at 360px 100px,rgba(220,210,255,.75), transparent 55%);
+  background-size: 460px 320px;
+  animation: r2-px-drift-mid 140s linear infinite, r2-twinkle-b 5.4s ease-in-out infinite;
+  opacity: .85;
+}
+.r2-stars-near {
+  background-image:
+    radial-gradient(2px 2px at 60px 60px,   rgba(255,255,255,1),    transparent 60%),
+    radial-gradient(1.8px 1.8px at 220px 140px, rgba(255,230,190,.9), transparent 60%),
+    radial-gradient(2px 2px at 340px 220px, rgba(200,220,255,.95), transparent 60%);
+  background-size: 540px 380px;
+  animation: r2-px-drift-near 90s linear infinite, r2-twinkle-a 3.6s ease-in-out infinite;
+  opacity: .95;
+}
+@keyframes r2-px-drift-far  { from { transform: translate3d(0,0,0); } to { transform: translate3d(-60px,-30px,0); } }
+@keyframes r2-px-drift-mid  { from { transform: translate3d(0,0,0); } to { transform: translate3d(-120px,40px,0); } }
+@keyframes r2-px-drift-near { from { transform: translate3d(0,0,0); } to { transform: translate3d(180px,-50px,0); } }
+@keyframes r2-twinkle-a { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.4); } }
+@keyframes r2-twinkle-b { 0%,100% { filter: brightness(.9); } 50% { filter: brightness(1.3); } }
+
+/* ─── Breathing nebula patches ─── */
+.r2-neb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(36px);
+  opacity: .35;
+  animation: r2-neb-breathe 16s ease-in-out infinite alternate;
+}
+.r2-neb-a {
+  top: 6%; left: 8%;
+  width: 28vw; height: 22vh;
+  background: radial-gradient(circle, rgba(120,90,220,.55), rgba(60,40,140,.18) 55%, transparent 75%);
+  animation-duration: 18s;
+}
+.r2-neb-b {
+  top: 4%; left: 55%;
+  width: 32vw; height: 24vh;
+  background: radial-gradient(circle, rgba(80,140,220,.5), rgba(40,80,170,.16) 55%, transparent 75%);
+  animation-duration: 22s; animation-delay: -6s;
+}
+.r2-neb-c {
+  top: 18%; left: 35%;
+  width: 24vw; height: 18vh;
+  background: radial-gradient(circle, rgba(210,170,240,.4), rgba(120,80,180,.14) 55%, transparent 75%);
+  animation-duration: 26s; animation-delay: -10s;
+}
+@keyframes r2-neb-breathe {
+  from { opacity: .22; transform: scale(.96); }
+  to   { opacity: .55; transform: scale(1.06); }
+}
+
+/* ─── Rotating astronomical diagrams / zodiac wheel ─── */
+.r2-astro-diagram {
+  position: absolute;
+  top: 4%; left: 50%;
+  width: 46vh; height: 46vh;
+  margin-left: -23vh;
+  border-radius: 50%;
+  border: 1px dashed rgba(220,200,140,.10);
+  box-shadow:
+    inset 0 0 0 14px transparent,
+    inset 0 0 0 15px rgba(220,200,140,.06),
+    inset 0 0 0 36px transparent,
+    inset 0 0 0 37px rgba(220,200,140,.05);
+  opacity: .55;
+  animation: r2-astro-rotate 240s linear infinite;
+}
+.r2-astro-diagram::before,
+.r2-astro-diagram::after {
+  content: '';
+  position: absolute; inset: 18%;
+  border-radius: 50%;
+  border: 1px dotted rgba(180,200,255,.10);
+}
+.r2-astro-diagram::after {
+  inset: 34%;
+  border-style: dashed;
+  border-color: rgba(220,200,140,.10);
+}
+.r2-astro-diagram-2 {
+  width: 34vh; height: 34vh; margin-left: -17vh;
+  top: 10%;
+  animation: r2-astro-rotate 360s linear infinite reverse;
+  opacity: .35;
+}
+@keyframes r2-astro-rotate { to { transform: rotate(360deg); } }
+
+.r2-zodiac-wheel {
+  position: absolute;
+  top: 4%; left: 50%;
+  width: 46vh; height: 46vh;
+  margin-left: -23vh;
+  border-radius: 50%;
+  opacity: .25;
+  animation: r2-astro-rotate 420s linear infinite reverse;
+  font-size: 14px;
+  color: rgba(230,210,150,.7);
+}
+.r2-zodiac-wheel span {
+  position: absolute;
+  left: 50%; top: 50%;
+  --r: 23vh;
+  --a: 0deg;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1));
+  text-shadow: 0 0 8px rgba(220,200,140,.5);
+}
+.r2-zodiac-wheel span:nth-child(1)  { --a:   0deg; }
+.r2-zodiac-wheel span:nth-child(2)  { --a:  30deg; }
+.r2-zodiac-wheel span:nth-child(3)  { --a:  60deg; }
+.r2-zodiac-wheel span:nth-child(4)  { --a:  90deg; }
+.r2-zodiac-wheel span:nth-child(5)  { --a: 120deg; }
+.r2-zodiac-wheel span:nth-child(6)  { --a: 150deg; }
+.r2-zodiac-wheel span:nth-child(7)  { --a: 180deg; }
+.r2-zodiac-wheel span:nth-child(8)  { --a: 210deg; }
+.r2-zodiac-wheel span:nth-child(9)  { --a: 240deg; }
+.r2-zodiac-wheel span:nth-child(10) { --a: 270deg; }
+.r2-zodiac-wheel span:nth-child(11) { --a: 300deg; }
+.r2-zodiac-wheel span:nth-child(12) { --a: 330deg; }
+
+/* ─── Distant galaxies & deep-sky clusters ─── */
+.r2-galaxy {
+  position: absolute;
+  width: 70px; height: 70px;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 60% 22% at 50% 50%, rgba(255,240,210,.55), rgba(200,170,255,.2) 50%, transparent 80%);
+  filter: blur(2px);
+  opacity: .55;
+  animation: r2-galaxy-rot 180s linear infinite, r2-twinkle-b 9s ease-in-out infinite;
+}
+.r2-galaxy-spiral {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255,250,230,.7) 0%, rgba(200,180,255,.25) 22%, transparent 55%),
+    conic-gradient(from 0deg, rgba(200,180,255,.0), rgba(220,200,255,.35), rgba(200,180,255,.0) 50%, rgba(255,230,200,.3), rgba(200,180,255,.0));
+  filter: blur(1.5px);
+}
+@keyframes r2-galaxy-rot { to { transform: rotate(360deg); } }
+.r2-cluster {
+  position: absolute;
+  width: 28px; height: 28px;
+  background:
+    radial-gradient(1px 1px at 4px 6px,   #fff, transparent 60%),
+    radial-gradient(1px 1px at 14px 10px, #ffe8c0, transparent 60%),
+    radial-gradient(1px 1px at 22px 4px,  #d8e0ff, transparent 60%),
+    radial-gradient(1.4px 1.4px at 10px 20px, #fff, transparent 60%),
+    radial-gradient(1px 1px at 20px 22px, #ffeed0, transparent 60%);
+  filter: blur(.3px);
+  opacity: .85;
+  animation: r2-twinkle-a 4.6s ease-in-out infinite;
+}
+
+/* ─── Pulse stars ─── */
+.r2-pulse-star {
+  position: absolute;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, rgba(255,240,200,.9) 40%, transparent 70%);
+  box-shadow: 0 0 10px rgba(255,240,200,.85), 0 0 22px rgba(200,220,255,.55);
+  animation: r2-pulse-star 3.8s ease-in-out infinite;
+}
+@keyframes r2-pulse-star {
+  0%,100% { transform: scale(.7); opacity: .55; box-shadow: 0 0 6px rgba(255,240,200,.5); }
+  50%     { transform: scale(1.6); opacity: 1;   box-shadow: 0 0 18px rgba(255,240,200,1), 0 0 34px rgba(200,220,255,.7); }
+}
+
+/* ─── Constellation lines ─── */
+.r2-constellations {
+  position: absolute;
+  top: 3%; left: 0;
+  width: 100%; height: 40%;
+  opacity: .35;
+}
+.r2-constellations line {
+  stroke: rgba(230,200,130,.55);
+  stroke-width: 1;
+  fill: none;
+  filter: drop-shadow(0 0 3px rgba(230,200,130,.5));
+}
+.r2-const-group   { animation: r2-const-glow 9s ease-in-out infinite; }
+.r2-const-group-2 { animation: r2-const-glow 11s ease-in-out infinite 3s; }
+.r2-const-group-3 { animation: r2-const-glow 13s ease-in-out infinite 6s; }
+@keyframes r2-const-glow {
+  0%, 80%, 100% { opacity: .25; }
+  40%           { opacity: 1; }
+}
+
+/* ─── Cosmic dust particles ─── */
+.r2-dust-layer { position: absolute; inset: 0; }
+.r2-dust-layer span {
+  position: absolute;
+  width: 2px; height: 2px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,250,230,.9), rgba(200,210,255,.4) 60%, transparent);
+  box-shadow: 0 0 4px rgba(255,250,230,.6);
+  opacity: .55;
+  animation: r2-dust-float 26s linear infinite;
+}
+@keyframes r2-dust-float {
+  0%   { transform: translate3d(0, 0, 0)        scale(.7); opacity: 0; }
+  10%  { opacity: .8; }
+  90%  { opacity: .6; }
+  100% { transform: translate3d(40px, -60vh, 0) scale(1.1); opacity: 0; }
+}
+.r2-dust-layer span:nth-child(1)  { left:  4%; bottom:-2%; animation-duration: 28s; animation-delay:  -2s; }
+.r2-dust-layer span:nth-child(2)  { left: 11%; bottom:-2%; animation-duration: 34s; animation-delay:  -8s; }
+.r2-dust-layer span:nth-child(3)  { left: 17%; bottom:-2%; animation-duration: 30s; animation-delay: -14s; }
+.r2-dust-layer span:nth-child(4)  { left: 23%; bottom:-2%; animation-duration: 36s; animation-delay:  -1s; }
+.r2-dust-layer span:nth-child(5)  { left: 29%; bottom:-2%; animation-duration: 26s; animation-delay: -18s; }
+.r2-dust-layer span:nth-child(6)  { left: 35%; bottom:-2%; animation-duration: 32s; animation-delay:  -5s; }
+.r2-dust-layer span:nth-child(7)  { left: 41%; bottom:-2%; animation-duration: 38s; animation-delay: -11s; }
+.r2-dust-layer span:nth-child(8)  { left: 47%; bottom:-2%; animation-duration: 28s; animation-delay: -16s; }
+.r2-dust-layer span:nth-child(9)  { left: 53%; bottom:-2%; animation-duration: 34s; animation-delay:  -3s; }
+.r2-dust-layer span:nth-child(10) { left: 59%; bottom:-2%; animation-duration: 30s; animation-delay:  -9s; }
+.r2-dust-layer span:nth-child(11) { left: 65%; bottom:-2%; animation-duration: 36s; animation-delay: -13s; }
+.r2-dust-layer span:nth-child(12) { left: 71%; bottom:-2%; animation-duration: 26s; animation-delay:  -6s; }
+.r2-dust-layer span:nth-child(13) { left: 77%; bottom:-2%; animation-duration: 32s; animation-delay: -19s; }
+.r2-dust-layer span:nth-child(14) { left: 83%; bottom:-2%; animation-duration: 38s; animation-delay:  -4s; }
+.r2-dust-layer span:nth-child(15) { left: 89%; bottom:-2%; animation-duration: 28s; animation-delay: -10s; }
+.r2-dust-layer span:nth-child(16) { left: 94%; bottom:-2%; animation-duration: 34s; animation-delay: -15s; }
+.r2-dust-layer span:nth-child(17) { left:  8%; bottom:-2%; animation-duration: 40s; animation-delay: -22s; }
+.r2-dust-layer span:nth-child(18) { left: 44%; bottom:-2%; animation-duration: 42s; animation-delay: -25s; }
+.r2-dust-layer span:nth-child(19) { left: 67%; bottom:-2%; animation-duration: 44s; animation-delay: -20s; }
+.r2-dust-layer span:nth-child(20) { left: 86%; bottom:-2%; animation-duration: 30s; animation-delay: -28s; }
+
+/* ─── Shooting stars (JS-spawned) ─── */
+.r2-shooting-layer { position: absolute; inset: 0; }
+.r2-shooting {
+  position: absolute;
+  width: 160px; height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,250,220,.95) 60%, #fff);
+  border-radius: 999px;
+  filter: drop-shadow(0 0 6px rgba(255,240,200,.9));
+  opacity: 0;
+  transform: translate3d(0,0,0) rotate(var(--ang, 18deg));
+  animation: r2-shoot 1.6s ease-out forwards;
+}
+.r2-shooting::after {
+  content: '';
+  position: absolute; right: -2px; top: -2px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 10px #fff, 0 0 22px rgba(255,240,200,.9);
+}
+@keyframes r2-shoot {
+  0%   { opacity: 0; transform: translate3d(0,0,0)      rotate(var(--ang,18deg)) scaleX(.2); }
+  15%  { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(60vw,30vh,0) rotate(var(--ang,18deg)) scaleX(1); }
+}
+
+/* ─── Sparkle bursts (JS-spawned) ─── */
+.r2-sparkle-layer { position: absolute; inset: 0; }
+.r2-sparkle {
+  position: absolute;
+  width: 10px; height: 10px;
+  background:
+    radial-gradient(circle, #fff 0%, rgba(255,240,200,.7) 30%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0;
+  animation: r2-sparkle 1.4s ease-out forwards;
+}
+.r2-sparkle::before, .r2-sparkle::after {
+  content: '';
+  position: absolute; left: 50%; top: 50%;
+  width: 18px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,250,220,.9), transparent);
+  transform: translate(-50%,-50%);
+}
+.r2-sparkle::after { transform: translate(-50%,-50%) rotate(90deg); }
+@keyframes r2-sparkle {
+  0%   { opacity: 0; transform: scale(.3); }
+  30%  { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+
+/* ─── Obsidian floor celestial reflection ─── */
+.r2-floor-celestial-reflect {
+  position: absolute;
+  left: 0; right: 0; bottom: 17%;
+  height: 22%;
+  background:
+    radial-gradient(ellipse 60% 80% at 25% 30%, rgba(120,90,220,.10), transparent 70%),
+    radial-gradient(ellipse 50% 70% at 70% 40%, rgba(80,140,220,.10), transparent 70%),
+    radial-gradient(1px 1px at 12% 30%, rgba(255,255,255,.4), transparent 50%),
+    radial-gradient(1px 1px at 28% 60%, rgba(200,220,255,.35), transparent 50%),
+    radial-gradient(1px 1px at 48% 40%, rgba(255,240,200,.4), transparent 50%),
+    radial-gradient(1px 1px at 64% 70%, rgba(220,200,255,.35), transparent 50%),
+    radial-gradient(1px 1px at 82% 50%, rgba(255,255,255,.4), transparent 50%),
+    radial-gradient(1.4px 1.4px at 38% 80%, rgba(255,255,255,.45), transparent 50%);
+  background-size: 100% 100%, 100% 100%, 220px 160px, 260px 180px, 300px 200px, 240px 170px, 280px 190px, 320px 220px;
+  mix-blend-mode: screen;
+  filter: blur(1px);
+  opacity: .55;
+  animation: r2-twinkle-a 7s ease-in-out infinite, r2-floor-shimmer-slow 28s linear infinite;
+  transform: scaleY(-1);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.6), transparent 90%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,.6), transparent 90%);
+}
+@keyframes r2-floor-shimmer-slow {
+  from { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
+  to   { background-position: 0 0, 0 0, -40px 0, 30px 0, -20px 0, 50px 0, -30px 0, 40px 0; }
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  .r2-fx * { animation-duration: 0s !important; animation-iteration-count: 1 !important; }
+}
+
+
+/* ═══════════════════════════════════════════════
+   EXIT NAV — floating room navigation buttons
+   Appears near the right wall when player reaches
+   the end of a room.
+═══════════════════════════════════════════════ */
+.exit-nav {
+  position: fixed;
+  bottom: 38px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 120;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+.exit-nav.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.exit-nav-btn {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: .12em;
+  padding: 9px 20px;
+  border: 1.5px solid rgba(200,175,120,.55);
+  border-radius: 3px;
+  background: rgba(30,22,10,.82);
+  color: #e8d9b0;
+  cursor: pointer;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+  transition: background .18s, color .18s, border-color .18s, transform .12s;
+}
+.exit-nav-btn:hover {
+  background: rgba(200,175,120,.18);
+  border-color: #c8af78;
+  color: #fff8e8;
+  transform: translateX(-2px);
+}
+.exit-nav-btn-next:hover  { transform: translateX(2px); }
+.exit-nav-btn-prev:hover  { transform: translateX(-2px); }
+
+/* Room III locked state */
+.exit-nav-btn-locked {
+  opacity: .42;
+  cursor: not-allowed;
+  border-style: dashed;
+}
+.exit-nav-btn-locked:hover {
+  background: rgba(30,22,10,.82);
+  color: #e8d9b0;
+  transform: none;
+}
+.exit-nav-soon {
+  font-size: 9px;
+  letter-spacing: .08em;
+  opacity: .75;
+  text-transform: uppercase;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* Celestial room variant — cooler palette */
+.exit-nav-celestial .exit-nav-btn {
+  border-color: rgba(140,170,220,.45);
+  background: rgba(8,14,36,.85);
+  color: #c8d8f8;
+}
+.exit-nav-celestial .exit-nav-btn:hover {
+  background: rgba(80,120,200,.18);
+  border-color: #8caae0;
+  color: #e8f0ff;
+}
+.exit-nav-celestial .exit-nav-btn-locked:hover {
+  background: rgba(8,14,36,.85);
+  color: #c8d8f8;
+}
+
+/* Room 2 image frames — fill frame just like Room 1 */
+.r2-frame-mat img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE — Tablet & Mobile Frame Fixes
+   All frames use top: max(60px, calc(66vh - Xpx))
+   so they always anchor to the wall bottom.
+   On small screens we shrink frame widths so they
+   stay within the wall zone and never clip into floor.
+═══════════════════════════════════════════════ */
+
+/* Tablet / small laptop — viewport width ≤ 900px */
+@media (max-width: 900px) {
+  #f1, #f4, #f5 { width: clamp(100px, 14vw, 160px); }
+  #f2            { width: clamp(140px, 18vw, 220px); }
+  #f3            { width: clamp(100px, 13vw, 150px); }
+  #c1, #c5       { width: clamp(120px, 15vw, 190px); }
+  #c2            { width: clamp(120px, 14vw, 180px); }
+  #c3, #c4       { width: clamp(100px, 13vw, 160px); }
+
+  .frame { max-height: 260px; }
+  #f2    { max-height: 220px; }
+}
+
+/* Mobile portrait — viewport width ≤ 540px */
+@media (max-width: 540px) {
+  #f1, #f4, #f5 { width: 100px; }
+  #f2            { width: 130px; }
+  #f3            { width: 95px;  }
+  #c1, #c5       { width: 110px; }
+  #c2            { width: 105px; }
+  #c3, #c4       { width: 95px;  }
+
+  .frame { max-height: 200px; }
+  #f2    { max-height: 170px; }
+
+  /* On mobile the wall sconce would overlap frames — push it higher */
+  .wall-sconce { top: calc(66vh - 160px); }
+}
+
+/* Mobile landscape (short viewport) — viewport height ≤ 450px */
+@media (max-height: 450px) {
+  .frame { max-height: 160px; }
+  #f2    { max-height: 130px; }
+  .wall-sconce { top: calc(66vh - 140px); }
 }
