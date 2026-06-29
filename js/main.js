@@ -641,6 +641,19 @@
 
   const tabs   = tabsUI.querySelectorAll('.r3-tab');
   const panels = tabsUI.querySelectorAll('.r3-tab-panel');
+  const handle = document.getElementById('r3SheetHandle');
+
+  function openSheet() {
+    tabsUI.classList.add('open');
+    if (handle) handle.setAttribute('aria-expanded', 'true');
+  }
+  function closeSheet() {
+    tabsUI.classList.remove('open');
+    if (handle) handle.setAttribute('aria-expanded', 'false');
+  }
+  function toggleSheet() {
+    tabsUI.classList.contains('open') ? closeSheet() : openSheet();
+  }
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -650,8 +663,82 @@
       tab.classList.add('active');
       const panel = document.getElementById('r3tab-' + target);
       if (panel) panel.classList.add('active');
+      openSheet(); // picking a tab while closed should reveal it
     });
   });
+
+  /* ── Drag the handle up/down to open/close the sheet ── */
+  if (handle) {
+    let dragging = false;
+    let startY = 0;
+    let sheetHeight = 0;
+    let startTranslate = 0; // px, 0 = fully open
+
+    function getTranslateY() {
+      const style = getComputedStyle(tabsUI);
+      const m = new DOMMatrixReadOnly(style.transform);
+      return m.m42; // current Y translation in px
+    }
+
+    function onDragStart(clientY) {
+      dragging = true;
+      startY = clientY;
+      sheetHeight = tabsUI.offsetHeight;
+      startTranslate = getTranslateY();
+      tabsUI.classList.add('dragging');
+    }
+    function onDragMove(clientY) {
+      if (!dragging) return;
+      const delta = clientY - startY;
+      let next = startTranslate + delta;
+      const minTranslate = 0;                       // fully open
+      const maxTranslate = sheetHeight - 30;         // fully closed (handle still showing)
+      next = Math.max(minTranslate, Math.min(maxTranslate, next));
+      tabsUI.style.transform = `translateY(${next}px)`;
+    }
+    function onDragEnd(clientY) {
+      if (!dragging) return;
+      dragging = false;
+      tabsUI.classList.remove('dragging');
+      tabsUI.style.transform = ''; // hand control back to the .open class transition
+
+      const delta = clientY - startY;
+      const openThreshold = sheetHeight * 0.28; // drag past ~28% of sheet height to flip state
+      const wasOpen = tabsUI.classList.contains('open');
+
+      if (wasOpen && delta > openThreshold) {
+        closeSheet();
+      } else if (!wasOpen && delta < -openThreshold) {
+        openSheet();
+      } else {
+        // snap back to whichever state it was already in
+        wasOpen ? openSheet() : closeSheet();
+      }
+    }
+
+    handle.addEventListener('pointerdown', e => {
+      handle.setPointerCapture(e.pointerId);
+      onDragStart(e.clientY);
+    });
+    handle.addEventListener('pointermove', e => {
+      if (dragging) onDragMove(e.clientY);
+    });
+    handle.addEventListener('pointerup', e => onDragEnd(e.clientY));
+    handle.addEventListener('pointercancel', e => onDragEnd(e.clientY));
+
+    /* plain tap (no drag) toggles open/closed — keyboard Enter/Space too */
+    let pointerDownPos = null;
+    handle.addEventListener('pointerdown', e => { pointerDownPos = e.clientY; });
+    handle.addEventListener('pointerup', e => {
+      if (pointerDownPos !== null && Math.abs(e.clientY - pointerDownPos) < 6) {
+        toggleSheet();
+      }
+      pointerDownPos = null;
+    });
+    handle.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleSheet(); }
+    });
+  }
 
   /* tap a frame → open the existing frame overlay */
   tabsUI.querySelectorAll('.r3-tab-frame').forEach(frame => {
